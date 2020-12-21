@@ -13,5 +13,10 @@ pluginManagement {
     }
 }
 rootProject.name = 'springrecipes'
-include 'ch2-1', 'recipes'
+include 'recipes'
+include 'ch2-1'
+include 'ch2-2'
+include 'ch2-3'
+include 'ch2-5'
+include 'ch2-6'
 

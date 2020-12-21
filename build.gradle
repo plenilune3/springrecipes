@@ -49,14 +49,8 @@ subprojects {
     }
 }
 
-project(':ch2-1') {
-    dependencies {
-
-    }
-}
-
 project(':recipes') {
     dependencies {
-        compile project(':ch2-1')
+
     }
 }
