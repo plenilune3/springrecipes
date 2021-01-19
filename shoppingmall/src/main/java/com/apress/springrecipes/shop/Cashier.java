@@ -1,5 +1,6 @@
 package com.apress.springrecipes.shop;
 
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import java.io.*;
 import java.util.Date;
 
 @Component
-public class Cashier {
+public class Cashier implements BeanNameAware {
 
     @Value("checkout")
     private String fileName;
@@ -19,6 +20,11 @@ public class Cashier {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        this.fileName = name;
     }
 
     public void setPath(String path) {
@@ -54,6 +60,5 @@ public class Cashier {
     public void closeFile() throws IOException {
         writer.close();
     }
-
 
 }
