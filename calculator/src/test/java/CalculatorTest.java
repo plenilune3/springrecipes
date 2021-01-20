@@ -8,11 +8,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class CalculatorTest {
 
     ApplicationContext context = new AnnotationConfigApplicationContext(CalculatorConfiguration.class);
+    ArithmeticCalculator arithmeticCalculator = context.getBean("arithmeticCalculator", ArithmeticCalculator.class);
 
     @Test
     public void arithmeticCalculatorTest() {
-        ArithmeticCalculator arithmeticCalculator = context.getBean("arithmeticCalculator", ArithmeticCalculator.class);
-
         arithmeticCalculator.add(1, 2);
         arithmeticCalculator.sub(4, 3);
         arithmeticCalculator.mul(2, 3);
@@ -25,8 +24,12 @@ public class CalculatorTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void divisionByZeroShouldBeThrown() {
-        ArithmeticCalculator arithmeticCalculator = context.getBean("arithmeticCalculator", ArithmeticCalculator.class);
-
         arithmeticCalculator.div(1, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeNumbersShouldBeThrown() {
+        arithmeticCalculator.add(1, -1);
+        arithmeticCalculator.add(-1, -1);
     }
 }
