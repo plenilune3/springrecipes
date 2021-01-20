@@ -15,4 +15,5 @@ pluginManagement {
 rootProject.name = 'springrecipes'
 include 'recipes'
 include 'shoppingmall'
+include 'calculator'
 
