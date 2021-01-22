@@ -25,6 +25,12 @@ public class CalculatorTest {
         UnitCalculator unitCalculator = context.getBean("unitCalculator", UnitCalculator.class);
         unitCalculator.kilogramToPound(10);
         unitCalculator.kilometerToMile(5);
+
+        Counter arithmeticCounter = (Counter) arithmeticCalculator;
+        System.out.println(arithmeticCounter.getCount());
+
+        Counter unitCounter = (Counter) unitCalculator;
+        System.out.println(unitCounter.getCount());
     }
 
     @Test(expected = IllegalArgumentException.class)
