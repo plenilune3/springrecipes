@@ -12,15 +12,11 @@ import java.util.Arrays;
 
 @Aspect
 @Component
-@Order(1)
 public class CalculatorLoggingAspect {
 
     private final Log log = LogFactory.getLog(this.getClass());
 
-    @Pointcut("execution(* *.*())")
-    private void loggingOperation() {}
-
-    @Before("loggingOperation()")
+    @Before("CalculatorPointcuts.loggingOperation()")
     public void logJointPoint(JoinPoint joinPoint) {
         log.info("Join point kind : " + joinPoint.getKind());
         log.info("Signature declaring type : " + joinPoint.getSignature().getDeclaringTypeName());

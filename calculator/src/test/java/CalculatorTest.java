@@ -1,6 +1,5 @@
-import com.apress.springrecipes.calculator.ArithmeticCalculator;
-import com.apress.springrecipes.calculator.CalculatorConfiguration;
-import com.apress.springrecipes.calculator.UnitCalculator;
+import com.apress.springrecipes.calculator.*;
+import com.jayway.jsonpath.internal.function.numeric.Min;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -38,4 +37,14 @@ public class CalculatorTest {
         arithmeticCalculator.add(1, -1);
         arithmeticCalculator.add(-1, -1);
     }
+
+    @Test
+    public void maxAndMinCalculatorTest() {
+        MaxCalculator maxCalculator = (MaxCalculator) arithmeticCalculator;
+        assertThat(maxCalculator.max(1, 2), is(2.0));
+
+        MinCalculator minCalculator = (MinCalculator) arithmeticCalculator;
+        assertThat(minCalculator.min(1, 2), is(1.0));
+    }
+
 }

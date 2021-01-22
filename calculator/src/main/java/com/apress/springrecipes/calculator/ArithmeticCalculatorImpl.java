@@ -2,6 +2,7 @@ package com.apress.springrecipes.calculator;
 
 import org.springframework.stereotype.Component;
 
+@LoggingRequired
 @Component("arithmeticCalculator")
 public class ArithmeticCalculatorImpl implements ArithmeticCalculator {
 

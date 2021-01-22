@@ -12,17 +12,17 @@ import java.util.Arrays;
 
 @Aspect
 @Component
-@Order(0)
 public class CalculatorValidationAspect {
 
     private final Log log = LogFactory.getLog(this.getClass());
 
-    @Before("execution(* *.*(double, double))")
+    @Before("CalculatorPointcuts.loggingOperation()")
     public void validationBefore(JoinPoint joinPoint) {
         for (Object arg : joinPoint.getArgs()) {
 
             try {
-                validate((Double) arg);
+                validateAll((Double) arg);
+                validateDiv((Double) arg);
             } catch(IllegalArgumentException e) {
                 log.error("Illegal argument " + Arrays.toString(joinPoint.getArgs()) + " in " +
                         joinPoint.getSignature().getName() + "() : " + e.getMessage());
@@ -31,7 +31,13 @@ public class CalculatorValidationAspect {
         }
     }
 
-    private void validate(Double arg) {
+    private void validateDiv(Double arg) {
+        if (arg == 0) {
+            throw new IllegalArgumentException("Division by zero");
+        }
+    }
+
+    private void validateAll(Double arg) {
         if (arg < 0) {
             throw new IllegalArgumentException("Positive numbers only");
         }
